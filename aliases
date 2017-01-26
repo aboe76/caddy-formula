@@ -1,0 +1,14 @@
+export DIR=$(sed 's/[_-]//g' <<< ${PWD##*/})
+export ROOT=${PWD}
+
+function master-shell () {
+    docker exec -it ${DIR}_master_1 /bin/bash
+}
+
+function child-shell() {
+    docker exec -it ${DIR}_child${1}_1 /bin/bash
+}
+
+function master-call () {
+    docker exec -it $DIR_master_1 /usr/bin/salt-call "$@"
+}

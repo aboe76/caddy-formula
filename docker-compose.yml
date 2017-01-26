@@ -1,0 +1,13 @@
+master:
+  hostname: salt
+  build: docker-compose/master
+  volumes:
+    - ./caddy:/srv/salt/caddy
+
+ubuntu:
+  # Templatized hostnames unavailable until branch is merged.
+  # See: https://github.com/docker/compose/pull/1131
+  # hostname: ubuntu-%%id%%
+  build: docker-compose/child
+  links:
+    - master
