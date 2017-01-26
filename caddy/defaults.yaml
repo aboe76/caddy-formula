@@ -4,3 +4,4 @@ caddy:
   pkg: caddy
   service:
     name: caddy
+  force_update: False
