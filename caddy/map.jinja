@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{## Start with  defaults from defaults.sls ##}
+{% import_yaml 'caddy/defaults.yaml' as default_settings %}
+
+{##
+Setup variable using grains['os_family'] based logic, only add key:values here
+that differ from whats in defaults.yaml
+##}
+{% set os_family_map = salt['grains.filter_by']({
+        'Debian': {},
+        'Suse': {},
+        'Arch': {},
+        'RedHat': {
+            "config": '/etc/caddy.conf',
+        },
+  }
+  , grain="os_family"
+  , merge=salt['pillar.get']('caddy:lookup'))
+%}
+{## Merge the flavor_map to the default settings ##}
+{% do default_settings.caddy.update(os_family_map) %}
+
+{## Merge in caddy:lookup pillar ##}
+{% set caddy = salt['pillar.get'](
+        'caddy',
+        default=default_settings.caddy,
+        merge=True
+    )
+%}
