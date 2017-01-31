@@ -1,12 +1,12 @@
-#base_name: "ubuntu_16.04_salt"
+base_name: "ubuntu_16.04_salt"
 
 stages:
   - test
 
 test:
-  - tags:
+  tags:
     - vm
-  - script:
+  script:
     - mkdir -p /srv/salt
     - ln -s $PWD/caddy /srv/salt/caddy
     - salt-call --local state.apply caddy
