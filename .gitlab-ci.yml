@@ -5,7 +5,7 @@ stages:
 
 test:
   tags:
-    - vm
+    - why
   script:
     - mkdir -p /srv/salt
     - ln -s $PWD/caddy /srv/salt/caddy
