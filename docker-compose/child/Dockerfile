@@ -1,4 +1,4 @@
-FROM solita/ubuntu-systemd
+FROM ubuntu:16.04
 MAINTAINER Kacey Cole <kcole@izeni.com>
 
 # Fetch system deps
@@ -10,4 +10,4 @@ RUN echo "deb http://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest xenial mai
 RUN apt-get update
 RUN apt-get install -y salt-minion
 
-#CMD /usr/bin/salt-minion --log-level=error
+CMD /usr/bin/salt-minion --log-level=error
