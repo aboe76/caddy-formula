@@ -44,6 +44,15 @@ caddy-identity:
     - uid: 33
     - gid: 33
 
+caddy-ssl-dir:
+  file.directory:
+    - name: /etc/ssl/caddy
+    - user: www-data
+    - group: www-data
+    - mode: 700
+    - require:
+      - user: caddy-identity
+
 caddy-install-service:
   file.copy:
     - name: /etc/systemd/system/caddy.service
