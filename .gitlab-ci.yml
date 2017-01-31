@@ -10,4 +10,4 @@ test:
   script:
     - sudo mkdir -p /srv/salt
     - sudo ln -s $PWD/caddy /srv/salt/caddy
-    - sudo salt-call --local state.apply caddy
+    - sudo salt-call --local state.sls caddy
