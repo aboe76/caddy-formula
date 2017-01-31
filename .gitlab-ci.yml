@@ -5,6 +5,6 @@ test:
   tags:
     - why
   script:
-    - mkdir -p /srv/salt
-    - ln -s $PWD/caddy /srv/salt/caddy
-    - salt-call --local state.apply caddy
+    - sudo mkdir -p /srv/salt
+    - sudo ln -s $PWD/caddy /srv/salt/caddy
+    - sudo salt-call --local state.apply caddy
