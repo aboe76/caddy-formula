@@ -12,9 +12,7 @@ that differ from whats in defaults.yaml
         'Debian': {},
         'Suse': {},
         'Arch': {},
-        'RedHat': {
-            "config": '/etc/caddy.conf',
-        },
+        'RedHat': {},
   }
   , grain="os_family"
   , merge=salt['pillar.get']('caddy:lookup'))
