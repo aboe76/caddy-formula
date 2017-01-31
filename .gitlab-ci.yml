@@ -1,4 +1,4 @@
-base_name: "ubuntu_16.04_salt"
+#base_name: "ubuntu_16.04_salt"
 
 stages:
   - test
