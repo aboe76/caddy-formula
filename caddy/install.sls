@@ -25,9 +25,9 @@ caddy-download:
       - file: caddy-clean
     {% endif %}
 
-caddy-sbin:
+caddy-bin:
   file.symlink:
-    - name: /usr/sbin/caddy
+    - name: /usr/local/bin/caddy
     - target: /etc/caddy/caddy
     - require:
       - archive: caddy-download
@@ -52,5 +52,5 @@ caddy-install-service:
     - group: root
     - mode: 0664
     - require:
-      - file: caddy-sbin
+      - file: caddy-bin
 
