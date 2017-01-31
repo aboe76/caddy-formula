@@ -1,6 +1,9 @@
 stages:
   - test
 
+variables:
+  - SUDO_ASKPASS: /usr/bin/ssh-askpass
+
 test:
   tags:
     - why
