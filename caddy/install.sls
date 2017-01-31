@@ -32,11 +32,10 @@ caddy-bin:
     - require:
       - archive: caddy-download
 
-caddy-ports:
+caddy-setcap:
   cmd.run:
     - name: setcap 'cap_net_bind_service=+ep' /etc/caddy/caddy
-    - watch:
-      - archive: caddy-download
+    - unless: getcap /etc/caddy/caddy | grep -q 'cap_net_bind_service+ep'
 
 caddy-identity:
   user.present:
@@ -62,4 +61,7 @@ caddy-install-service:
     - mode: 0664
     - require:
       - file: caddy-bin
+      - cmd: caddy-setcap
+      - user: caddy-identity
+      - file: caddy-ssl-dir
 
