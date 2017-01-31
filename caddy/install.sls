@@ -65,3 +65,14 @@ caddy-install-service:
       - user: caddy-identity
       - file: caddy-ssl-dir
 
+caddy-default-index:
+  file.managed:
+    - name: /var/www/index.html
+    - source: salt://caddy/index.html
+
+caddy-default-caddyfile:
+  file.managed:
+    - name: /etc/caddy/Caddyfile
+    - source: salt://caddy/Caddyfile
+    - require:
+      - file: caddy-default-index
