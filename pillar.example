@@ -1,0 +1,3 @@
+caddy:
+  caddyfile: "/opt/src/server/Caddyfile"
+  force_update: True
