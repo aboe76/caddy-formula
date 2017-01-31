@@ -65,14 +65,36 @@ caddy-install-service:
       - user: caddy-identity
       - file: caddy-ssl-dir
 
+{% if caddy['caddyfile'] %}
+caddy-caddyfile-exists:
+  file.exists:
+    - name: {{ caddy['caddyfile'] }}
+
+caddy-symlink-caddyfile:
+  file.symlink:
+    - name: /etc/caddy/Caddyfile
+    - target: {{ caddy['caddyfile'] }}
+    - force: True
+    - backupname: "Caddyfile.previous"
+    - user: www-data
+    - group: www-data
+    - mode: 664
+    - require:
+      - file: caddy-caddyfile-exists
+
+{% else %}
 caddy-default-index:
   file.managed:
     - name: /var/www/index.html
     - source: salt://caddy/index.html
+    - replace: False
 
 caddy-default-caddyfile:
   file.managed:
     - name: /etc/caddy/Caddyfile
     - source: salt://caddy/Caddyfile
+    - replace: True
+    - follow_symlinks: False
     - require:
       - file: caddy-default-index
+{% endif %}

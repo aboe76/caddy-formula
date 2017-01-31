@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 caddy:
-  pkg: caddy
   service:
     name: caddy
+  caddyfile: ""
   force_update: False
