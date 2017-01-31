@@ -11,4 +11,4 @@ test:
     - sudo mkdir -p /srv/salt
     - sudo ln -s $PWD/caddy /srv/salt/caddy
     - sudo salt-call --local state.sls caddy
-    - sudo systemctl status caddy
+    - sudo journalctl -u caddy
