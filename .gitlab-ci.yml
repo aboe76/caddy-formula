@@ -12,3 +12,4 @@ test:
     - sudo ln -s $PWD/caddy /srv/salt/caddy
     - sudo salt-call --local state.sls caddy
     - sudo journalctl -u caddy
+    - curl localhost
