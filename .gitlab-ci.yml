@@ -6,7 +6,7 @@ variables:
 
 test:
   tags:
-    - why
+    - vm
   script:
     - sudo mkdir -p /srv/salt
     - sudo ln -s $PWD/caddy /srv/salt/caddy
