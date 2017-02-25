@@ -1,4 +1,1 @@
-*:80 {
-  root /var/www
-  gzip
-}
+import ./sites-enabled/*
