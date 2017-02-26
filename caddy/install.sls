@@ -2,6 +2,8 @@
 # vim: ft=sls
 
 {% from "caddy/map.jinja" import caddy with context %}
+{% set redirect_domains = pillar.redirect_domains|default([]) %}
+{% set fqdn = pillar.fqdn|default('deploy.izeni.com') %}
 
 {% if caddy['force_update'] %}
 caddy-clean:
@@ -116,4 +118,15 @@ caddy-default-caddyfile:
     - follow_symlinks: False
     - require:
       - file: caddy-default-index
+{% endif %}
+
+{% if redirect_domains %}
+caddy-redirect-conf:
+  file.managed:
+    - name: /etc/caddy/sites-enabled/redirects
+    - source: salt://caddy/redirects.conf
+    - template: jinja
+    - context:
+      redirect_domains: "{{ redirect_domains | join(' ')}}"
+      fqdn: {{ fqdn }}
 {% endif %}
