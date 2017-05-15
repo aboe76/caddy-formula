@@ -15,7 +15,7 @@ caddy-clean:
 caddy-download:
   archive.extracted:
     - name: /etc/caddy
-    - source: https://caddyserver.com/download/build?os=linux&arch=amd64&features=
+    - source: https://caddyserver.com/download/linux/amd64
     - archive_format: tar
     - skip_verify: true
     - enforce_toplevel: false
