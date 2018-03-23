@@ -1,11 +1,16 @@
 caspar.wraith.nl {
   root /var/www/html
+
   gzip
+
   log stdout
   errors stderr
+
+
 
   tls {
     dns cloudflare
     max_certs 10
   }
+
 }
