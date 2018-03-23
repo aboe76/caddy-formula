@@ -15,7 +15,7 @@ caddy-clean:
 caddy-download:
   archive.extracted:
     - name: /etc/caddy
-    - source: https://caddyserver.com/download/linux/amd64
+    - source: https://caddyserver.com/download/linux/amd64?plugins={{ caddy['plugins']|join(', ') }}&license={{ caddy['license'] }}
     - archive_format: tar
     - skip_verify: true
     - enforce_toplevel: false
@@ -70,7 +70,7 @@ caddy-install-service:
 caddy-root-config:
   file.managed:
     - name: /etc/caddy/Caddyfile
-    - source: salt://caddy/Caddyfile
+    - source: salt://caddy/files/Caddyfile
     - replace: True
     - follow_symlinks: False
 
@@ -107,13 +107,13 @@ caddy-symlink-caddyfile:
 caddy-default-index:
   file.managed:
     - name: /var/www/index.html
-    - source: salt://caddy/index.html
+    - source: salt://caddy/files/index.html
     - replace: False
 
 caddy-default-caddyfile:
   file.managed:
     - name: /etc/caddy/sites-enabled/default
-    - source: salt://caddy/BasicCaddyfile
+    - source: salt://caddy/files/BasicCaddyfile
     - replace: True
     - follow_symlinks: False
     - require:
@@ -124,7 +124,7 @@ caddy-default-caddyfile:
 caddy-redirect-conf:
   file.managed:
     - name: /etc/caddy/sites-enabled/redirects
-    - source: salt://caddy/redirects.conf
+    - source: salt://caddy/templates/redirects.conf
     - template: jinja
     - context:
       redirect_domains: "{{ redirect_domains | join(' ')}}"

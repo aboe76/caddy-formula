@@ -4,4 +4,7 @@ caddy:
   service:
     name: caddy
   caddyfile: ""
-  force_update: False
+  force_update: True
+  license: personal
+  plugins:
+    - tls.dns.cloudflare
