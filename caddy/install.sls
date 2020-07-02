@@ -50,7 +50,7 @@ caddy-ssl-dir:
     - name: /etc/ssl/caddy
     - user: www-data
     - group: www-data
-    - mode: 700
+    - mode: '0700'
     - require:
       - user: caddy-identity
 
@@ -60,7 +60,7 @@ caddy-install-service:
     - source: /etc/caddy/init/linux-systemd/caddy.service
     - user: root
     - group: root
-    - mode: 664
+    - mode: '0664'
     - require:
       - file: caddy-bin
       - cmd: caddy-setcap
@@ -79,8 +79,8 @@ caddy-sites-enabled:
     - name: /etc/caddy/sites-enabled
     - user: www-data
     - group: www-data
-    - dir_mode: 774
-    - file_mode: 664
+    - dir_mode: '0774'd
+    - file_mode: '0664'
     - recurse:
       - user
       - group
@@ -99,7 +99,7 @@ caddy-symlink-caddyfile:
     - backupname: "Caddyfile.previous"
     - user: www-data
     - group: www-data
-    - mode: 664
+    - mode: '0664'
     - require:
       - file: caddy-caddyfile-exists
 
