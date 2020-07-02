@@ -60,7 +60,7 @@ caddy-install-service:
     - source: /etc/caddy/init/linux-systemd/caddy.service
     - user: root
     - group: root
-    - mode: 0664
+    - mode: 664
     - require:
       - file: caddy-bin
       - cmd: caddy-setcap
@@ -127,6 +127,6 @@ caddy-redirect-conf:
     - source: salt://caddy/templates/redirects.conf
     - template: jinja
     - context:
-      redirect_domains: "{{ redirect_domains | join(' ')}}"
+      redirect_domains: "{{ redirect_domains | join(' ') }}"
       fqdn: {{ fqdn }}
 {% endif %}
